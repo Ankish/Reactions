@@ -241,7 +241,12 @@ public final class ReactionButton: UIReactionControl {
 
     overlay.frame = CGRect(x:0 , y: 0, width: window.bounds.width, height: window.bounds.height * 2)
 
-    let centerPoint = convert(CGPoint(x: bounds.midX, y: lastTouchedYPosition - 30), to: nil)
+    var y = lastTouchedYPosition - 30
+    if y < window.frame.origin.y  {
+        y = lastTouchedYPosition + 30
+    }
+    
+    let centerPoint = convert(CGPoint(x: bounds.midX, y: y), to: nil)
     selector.frame  = selector.boundsToFit()
 
     switch config.alignment {
